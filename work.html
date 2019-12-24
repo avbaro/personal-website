@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145170170-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-145170170-1');
+    </script>
+    <!-- Website Title (for tab ID) -->
+    <title>Alex Baró | IT Analyst</title>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="assets/design-optimized.css">
+    <!-- Google Fonts stylesheet -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Quicksand:400,600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicons/favicon-76.png"/>
+  </head>
+      <!-- End of Header (cont. CSS) -->
+  <body>
+    <div id="particles-js"></div>
+
+      <div class="navbar borderless">
+        <a href="/index.html">Home</a>
+        <a href="/work.html">Resume</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <div class="container">
+        <h2>Resume</h2>
+          <button class="accordion">
+          <p class="company">Fandango</p>
+          <p class="job-period">May 2019 - Present</p>
+          </button>
+          <div class="panel">
+          <p class="job-position">IT Support Analyst</p>
+          <div class="job-duties"></div>
+          </div>
+
+          <button class="accordion">
+            <p class="company">NBCUniversal</p>
+            <p class="job-period">January 2019 - May 2019</p>
+          </button>
+          <div class="panel">
+          <p class="job-position">MediaTech Intern, Product Delivery</p>
+          <div class="job-duties">
+            <ul>
+              <li>Create series of instructional documentation for OneDrive/SharePoint for company-wide migration to Office365 on Windows 10 and OSX 10.14 Mojave, increasing value of introduced technology</li>
+              <li>Produce user participation reports for Office 365 training sessions per request of Senior Program Manager</li>
+              <li>Monitor project and tasks on daily basis for adherence to schedule and project scope</li>
+              <li>Coordinate ongoing projects and services as liaison between project management and project team</li>
+            </ul>
+          </div>
+          </div>
+
+          <button class="accordion">
+            <p class="company">Cotton On</p>
+            <p class="job-period">November 2018 - January 2019</p>
+          </button>
+          <div class="panel">
+          <p class="job-position">IT Support Analyst</p>
+          <div class="job-duties">
+            <ul>
+              <li>Configure, image, and repair AURES and DigiPoS POS systems for use in 140+ retail locations</li>
+              <li>Provide 1st-Level hardware and software support through Serenova Contact Center Software</li>
+              <li>Troubleshoot 10+ hardware issues daily through ManageEngine ticketing system</li>
+              <li>Monitor server alerts and logs through Solarwinds Event Manager</li>
+              <li>Track network statuses and configurations of retail LANs within US stores</li>
+              <li>Prepare and ship IT hardware for store deployment</li>
+            </ul>
+          </div>
+          </div>
+
+          <button class="accordion">
+            <p class="company">CSU Northridge</p>
+            <p class="job-period">May 2018 - May 2019</p>
+          </button>
+          <div class="panel">
+          <p class="job-position">Web Content Administrator</p>
+          <div class="job-duties">
+            <ul>
+              <li>Use Adobe Photoshop, Illustrator, and other graphic design tools to design 3-5+ promotional posters and flyers for events monthly</li>
+              <li>Maintain and update Religious Studies department website in regard to upcoming events and updates on a weekly basis</li>
+              <li>Ensure website is following Web Content Accessibility Guidelines (WCAG) for increased compatibility with all user devices</li>
+            </ul>
+          </div>
+          <p class="job-position">Student Administrative Assistant, Religious Studies Department</p>
+          <div class="job-duties">
+            <ul>
+              <li>Resolved all questions regarding department faculty and courses through phone or in-person</li>
+              <li>Maintained and distributed office supplies while adhering to a fixed office budget</li>
+              <li>Filed documents to maintain an organized and efficient office environment</li>
+              <li>Organized incoming and outgoing mail in a clear and concise manner</li>
+            </ul>
+          </div>
+          </div>
+
+          <button class="accordion">
+            <p class="company">Jewish Federation of Greater LA</p>
+            <p class="job-period">August 2018 - December 2018</p>
+          </button>
+          <div class="panel">
+          <p class="job-position">Information Technology Intern</p>
+          <div class="job-duties">
+            <ul>
+              <li>Coordinated with 150+ employees to setup company-wide multi factor authentication for individuals, increasing security for entire organization</li>
+              <li>Resolved end-user issues with computer/peripheral hardware and enterprise computer applications through Spiceworks ticketing system</li>
+              <li>Performed daily morning procedures to ensure on-premise and cloud applications are functional</li>
+              <li>Supported office with troubleshooting issues across Windows 10 and Mac OSX devices</li>
+              <li>Imaged workstations using SmartDeploy imaging software</li>
+            </ul>
+          </div>
+          </div>
+
+    <div class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
+      <p>All Rights Reserved.</p>
+    </div>
+  </body>
+
+  <script src="/js/particles.min.js"></script>
+  <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS.load('particles-js', 'js/config.json', function() {
+    console.log('callback - particles.js config loaded');
+    });</script>
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight){
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+</html>

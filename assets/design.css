@@ -1,0 +1,353 @@
+/* Optimized CSS file for Mobile and Desktop */
+/* Eerie Black: #171A21 | Nickel: #617073 | Steel Blue: #4281A4 */
+/* Pewter Blue: #9CAFB7 | Granite Gray: #607466 */
+/*---------CSS Reset for all elements---------*/
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+/*--------------End CSS Reset--------------*/
+@font-face {
+  src: url("/assets/East-Liberty.otf");
+  font-family: East Liberty;
+}
+#particles-js canvas {
+    display: block;
+    vertical-align: top;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+    transition: opacity .8s ease, transform 1.4s ease
+}
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -10;
+}
+body {
+	background-color: #171A21;
+	height: 100%;
+	color: white;
+}
+.navbar {
+	width:100%;
+	position: relative;
+	text-align: center;
+}
+.navbar > a {
+  box-sizing:border-box;
+  color:white;
+  background:transparent;
+  border-width:2px;
+  border-style: solid;
+  border-color: white;
+  position:relative;
+  margin:1em;
+  display:inline-block;
+  padding:0.5em 1em;
+  transition:all 0.3s ease-in-out;
+  text-align:center;
+  text-decoration: none;
+  font-family:'Quicksand';
+  font-size: 1rem;
+}
+.navbar > a:before, .navbar >a:after {
+  content:'';
+  display:block;
+  position:absolute;
+  border-color:white;
+  box-sizing:border-box;
+  border-style:solid;
+  width:1em;
+  height:1em;
+  transition:all 0.3s ease-in-out
+}
+.navbar > a:before {
+  top:-6px;
+  left:-6px;
+  border-width:2px 0 0 2px;
+  z-index:5;
+}
+.navbar > a:after {
+  bottom:-6px;
+  right:-6px;
+  border-width:0 2px 2px 0;
+}
+.navbar > a:hover:before, .navbar > a:hover:after {
+  width:calc(100% + 12px);
+  height:calc(100% + 12px);
+  border-color:white;
+}
+.navbar > a:hover {
+  color:white;
+  background-color:white;
+  border-color:white;
+}
+
+.borderless a {
+  border-color:rgba(0,0,0,0);
+  color:white;
+}
+.borderless a:hover {
+  border-color:white;
+  background-color:transparent;
+  color:white;
+}
+.borderless a:before, .borderless a:after {
+  border-color:transparent;
+}
+.borderless a:hover:before, .borderless a:hover:after {
+  width:calc(100% + 12px);
+  height:calc(100% + 12px);
+  border-color:white;
+}
+.container {
+	width: 70%;
+	max-width: 800px;
+	height: 100%;
+	margin: auto;
+	text-align:justify;
+}
+h1, h2 {
+  margin: 50px auto;
+  text-align: left;
+	line-height: 1;
+  font-size: 6rem;
+	text-shadow: 10px 10px #4281A4;
+  font-family: 'Rubik Mono One';
+  color: white;
+}
+p {
+  font-family: 'Exo 2', sans-serif;
+  line-height: 1.8em;
+  font-size: 1.2rem;
+}
+.signature {
+	width: 100%;
+	min-width: 80%;
+	text-align: right;
+	font-size: 3rem;
+	padding-top: 20px;
+	font-family: 'East Liberty', sans-serif;
+	color: white;
+}
+.footer {
+	text-align: center;
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+.footer > p{
+	line-height: 1.2;
+	font-size: 10px;
+}
+.wrapper {
+   width: 100vw;
+   margin: auto;
+   margin-bottom: 0px;
+   height: 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   transition: all 0.3s ease;
+}
+.contact {
+   max-width: 1024px;
+   width: 100%;
+   padding: 0 10%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.card {
+   max-width: 350px;
+   height: 230px;
+   background-color: #171a21;
+   margin: 20px;
+   border-radius: 10px;
+   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+   border: 2px solid rgba(7, 7, 7, 0.12);
+   font-size: 18px;
+   transition: all 0.3s ease;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   cursor: pointer;
+   transition: all 0.3s ease;
+}
+
+.icon {
+   margin: 0 auto;
+   width: 100%;
+   height: 80px;
+   max-width:80px;
+   background: linear-gradient(90deg, #bad1dd 0%, #4281A4 40%, #171A21 60%);
+   border-radius: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   transition: all 0.8s ease;
+   background-position: 0px;
+   background-size: 200px;
+}
+
+.card .title {
+   width: 100%;
+   margin: 0;
+   text-align: center;
+   margin-top: 30px;
+   color: #fff;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: 4px;
+}
+
+.card .text {
+   width: 80%;
+   margin: 0 auto;
+   font-size: 13px;
+   text-align: center;
+   margin-top: 20px;
+   color: #fff;
+   font-weight: 200;
+   letter-spacing: 1.5px;
+   opacity: 0;
+   max-height:0;
+   transition: all 0.3s ease;
+	 max-width: 260px;
+}
+
+.card:hover {
+   height: 270px;
+}
+
+.card:hover .info {
+   height: 90%;
+}
+
+.card:hover .text {
+   transition: all 0.3s ease;
+   opacity: 1;
+   max-height:40px;
+}
+
+.card:hover .icon {
+   background-position: -120px;
+	 font-size: 2.5em;
+   transition: all 0.3s ease;
+}
+
+.card:hover .icon i {
+   background: linear-gradient(90deg, #bad1dd, #4281A4);
+   -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+   opacity: 1;
+   transition: all 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+	.navbar > a {
+	  box-sizing:border-box;
+	  color:white;
+	  background:transparent;
+	  border-width:2px;
+	  border-style: solid;
+	  border-color: white;
+	  position:relative;
+	  margin:1em;
+	  display:inline-block;
+	  padding:0.5em 0.6em;
+	  transition:all 0.3s ease-in-out;
+	  text-align:center;
+	  text-decoration: none;
+	  font-family:'Quicksand';
+	  font-size: 1rem;
+	}
+	.navbar > a:before, .navbar >a:after {
+	  content:'';
+	  display:block;
+	  position:absolute;
+	  border-color:white;
+	  box-sizing:border-box;
+	  border-style:solid;
+	  width:1em;
+	  height:1em;
+	  transition:all 0.3s ease-in-out
+	}
+	.navbar > a:before {
+	  top:-6px;
+	  left:-6px;
+	  border-width:2px 0 0 2px;
+	  z-index:5;
+	}
+	.navbar > a:after {
+	  bottom:-6px;
+	  right:-6px;
+	  border-width:0 2px 2px 0;
+	}
+	.navbar > a:hover:before, .navbar > a:hover:after {
+	  width:calc(100% + 12px);
+	  height:calc(100% + 12px);
+	  border-color:white;
+	}
+	.navbar > a:hover {
+	  color:white;
+	  background-color:white;
+	  border-color:white;
+	}
+
+	.borderless a {
+	  border-color:rgba(0,0,0,0);
+	  color:white;
+	}
+	.borderless a:hover {
+	  border-color:white;
+	  background-color:transparent;
+	  color:white;
+	}
+	.borderless a:before, .borderless a:after {
+	  border-color:transparent;
+	}
+	.borderless a:hover:before, .borderless a:hover:after {
+	  width:calc(100% + 12px);
+	  height:calc(100% + 12px);
+	  border-color:white;
+	}
+	.signature {
+		text-align: center;
+		font-size: 8vw;
+	}
+	.contact {
+	   max-width: 1080px;
+	   width: 80%;
+	   padding: 0 10%;
+	   margin: 0 auto;
+	   display: flex;
+		 flex-wrap: wrap;
+	   justify-content: center;
+	   align-items: center;
+	}
+	.card {
+	   width: 100%;
+	   max-width: 250px;
+	   min-width: 100px;
+	   height: 250px;
+}
+	.footer {
+		text-align: center;
+		position: relative;
+		padding-top:30%;
+		width: 100%;
+	}
+}

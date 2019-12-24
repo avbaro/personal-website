@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145170170-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-145170170-1');
+    </script>
+    <!-- Website Title (for tab ID) -->
+    <title>Alex Baró | IT Analyst</title>
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="assets/design-optimized.css">
+    <!-- Google Fonts stylesheet -->
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Quicksand&display=swap" rel="stylesheet">
+    <link href="/fontawesome-web/css/all.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicons/favicon-76.png"/>
+  </head>
+      <!-- End of Header (cont. CSS) -->
+  <body>
+    <div id="particles-js"></div>
+
+      <div class="navbar borderless">
+        <a href="/index.html">Home</a>
+        <a href="/work.html">Resume</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+
+      <div class="container" style="margin-bottom:50px;">
+        <h2>Contact</h2>
+        <p>Whether you want to message me on LinkedIn or send me an E-Mail, there are plenty of ways to get in touch with me! Find the links below:</p>
+      </div>
+
+      <div class="wrapper">
+        <div class="contact">
+          <!-- card -->
+          <div class="card fa-2x">
+                <a href="https://github.com/avbaro" target="_blank">
+                <div class="icon"><i class="fab fa-github-alt"></i></div>
+                <p class="title">GitHub</p>
+                <p class="text">See my past/current projects on GitHub!</p>
+                </a>
+          </div>
+          <!-- end card -->
+          <!-- card -->
+            <div class="card fa-2x">
+                <a href="https://www.linkedin.com/in/alexanderbaro/" target="_blank">
+                <div class="icon"><i class="fab fa-linkedin-in"></i></div>
+                <p class="title">LinkedIn</p>
+                <p class="text">Check out my profile on LinkedIn!</p>
+                </a>
+            </div>
+          <!-- end card -->
+          <!-- card -->
+          <div class="card fa-2x">
+                <a href="mailto:alexanderbaro@outlook.com">
+                <div class="icon"><i class="fas fa-paper-plane"></i></div>
+                <p class="title">E-Mail</p>
+                <p class="text">E-Mail me to ask any questions!</p>
+                </a>
+          </div>
+          <!-- end card -->
+        </div>
+    </div>
+
+    <div class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
+      <p>All Rights Reserved.</p>
+    </div>
+  </body>
+
+  <script src="/js/particles.min.js"></script>
+  <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS.load('particles-js', 'js/config.json', function() {
+    console.log('callback - particles.js config loaded');
+    });</script>
+</html>
