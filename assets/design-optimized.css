@@ -127,8 +127,8 @@ body {
 h1, h2 {
   margin: 50px auto;
   text-align: left;
-	line-height: 1;
-  font-size: 8rem;
+	line-height: 1.03;
+  font-size: 11vw;
 	text-shadow: -8px 8px #5c4d89;
   font-family: 'Bungee';
   color: white;
@@ -302,7 +302,8 @@ p {
    opacity: 1;
    transition: all 0.3s ease;
 }
-@media screen and (max-width: 768px) {
+/*-------------MOBILE INTERFACE FOR MAX WIDTH 512PX-------------*/
+@media screen and (max-width: 425px) {
 	.navbar > a {
 	  box-sizing:border-box;
 	  color:white;
@@ -311,14 +312,14 @@ p {
 	  border-style: solid;
 	  border-color: white;
 	  position:relative;
-	  margin:1em;
+	  margin:10px;
 	  display:inline-block;
-	  padding:0.5em 0.6em;
+	  padding:0.3em 0.3em;
 	  transition:all 0.3s ease-in-out;
 	  text-align:center;
 	  text-decoration: none;
 	  font-family:'Quicksand';
-	  font-size: 1rem;
+	  font-size: 4vw;
 	}
 	.navbar > a:before, .navbar >a:after {
 	  content:'';
@@ -342,42 +343,17 @@ p {
 	  right:-6px;
 	  border-width:0 2px 2px 0;
 	}
-	.navbar > a:hover:before, .navbar > a:hover:after {
-	  width:calc(100% + 12px);
-	  height:calc(100% + 12px);
-	  border-color:white;
-	}
-	.navbar > a:hover {
-	  color:white;
-	  background-color:white;
-	  border-color:white;
-	}
 
-	.borderless a {
-	  border-color:rgba(0,0,0,0);
-	  color:white;
-	}
-	.borderless a:hover {
-	  border-color:white;
-	  background-color:transparent;
-	  color:white;
-	}
-	.borderless a:before, .borderless a:after {
-	  border-color:transparent;
-	}
-	.borderless a:hover:before, .borderless a:hover:after {
-	  width:calc(100% + 12px);
-	  height:calc(100% + 12px);
-	  border-color:white;
-	}
 	.index-img{
-		width:14em;
-        float: none;
         margin: 0 auto;
 		border-radius: 50%;
 	}
+    .headshot{
+	margin: auto;
+    width: 70vw;
+    }
 	h1, h2 {
-	  margin: 50px auto;
+	  margin: 60px auto;
 	  text-align: center;
 	  font-size: 14vw;
 	  color: white;
@@ -387,7 +363,7 @@ p {
 		font-size: 8vw;
 	}
 	.company {
-		font-size: 8vw;
+		font-size: 9vw;
 	}
 	.job-period {
 		font-size: 3vw;
