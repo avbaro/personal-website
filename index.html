@@ -16,31 +16,30 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="assets/design-optimized.css">
     <!-- Google Fonts stylesheet -->
-    <link href="https://fonts.googleapis.com/css?family=Bungee|Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/assets/images/favicons/favicon-76.png"/>
   </head>
       <!-- End of Header (cont. CSS) -->
   <body>
-      <!-- Particles.js background (DO NOT TOUCH) -->
+      <!-- Particles.js background (Original Auuthor: Vincent Garreau) -->
       <div id="particles-js"></div>
       <!-- Navigation  -->
-      <div class="navbar borderless">
-        <a href="/index.html">Home</a>
-        <a href="/work.html">Resume</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/contact.html">Contact</a>
+      <div class="nav">
+        <a class="nav-item" href="/index.html">Home</a>
+        <a class="nav-item" href="/experience.html">Experience</a>
+        <a class="nav-item" href="/blog.html">Blog</a>
+        <a class="nav-item" href="/contact.html">Contact</a>
       </div>
       <div class="container">
-        <div class="index-img">
+        <div class="header-img">
           <img src="/assets/images/Headshot.jpg" class="headshot">
-          <h1>Hi, I'm Alex.</h1>
+          <h1>Hi, My Name Is Alex.</h1>
         </div>
         <p>I am an IT Support Analyst currently working for Fandango with a strong passion for technology. While my interests encompass a wide range of subjects, I find that a career in tech is the most rewarding to me and I enjoy the challenges working with it brings. I look forward to the opportunity of being a technical project manager or cloud architect in the near future and am always open to experiences that can build my skillset.</p>
         <div class="signature">-Alexander V. Baro</div>
     </div>
-
     <div class="footer">
-      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
+      <p>Copyright &copy; 2019-<script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
       <p>All Rights Reserved.</p>
     </div>
   </body>
@@ -48,7 +47,5 @@
   <script src="/js/particles.min.js"></script>
   <script>
     /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles-js', 'js/config.json', function() {
-    console.log('callback - particles.js config loaded');
-    });</script>
+    particlesJS.load('particles-js', 'js/config.json');</script>
 </html>

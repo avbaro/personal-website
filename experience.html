@@ -16,32 +16,33 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="assets/design-optimized.css">
     <!-- Google Fonts stylesheet -->
-    <link href="https://fonts.googleapis.com/css?family=Bungee|Quicksand:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/assets/images/favicons/favicon-76.png"/>
   </head>
       <!-- End of Header (cont. CSS) -->
   <body>
+    <!-- Particles.js background (Original Auuthor: Vincent Garreau) -->
     <div id="particles-js"></div>
-
-      <div class="navbar borderless">
-        <a href="/index.html">Home</a>
-        <a href="/work.html">Resume</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/contact.html">Contact</a>
-      </div>
+    <!-- Navigation  -->
+    <div class="nav">
+      <a class="nav-item" href="/index.html">Home</a>
+      <a class="nav-item" href="/experience.html">Experience</a>
+      <a class="nav-item" href="/blog.html">Blog</a>
+      <a class="nav-item" href="/contact.html">Contact</a>
+    </div>
 
       <div class="container">
-        <h2>Resume</h2>
-          <button class="accordion">
+        <h1>Experience</h1>
+          <button class="company-info">
           <p class="company">Fandango</p>
           <p class="job-period">May 2019 - Present</p>
           </button>
-          <div class="panel">
+          <div class="expandable">
           <p class="job-position">IT Support Analyst</p>
           <div class="job-duties">
             <ul>
-              <li>Manage all onboarding procedures for IT department, including account creation in LDAP/Production environment, full desk and peripheral setup, and distribution of third-party software licenses</li>
-              <li>Work with Sr. Support Analysts to develop Microsoft PowerShell scripts for AD group/user manipulation and reporting, reducing human input and errors within environment</li>
+              <li>Manage all onboarding procedures for IT department, including account creation in LDAP / Production environment, full desk and peripheral setup, and distribution of third-party software licenses</li>
+              <li>Work with Sr. Support Analysts to develop Microsoft PowerShell scripts for AD Group/User manipulation and reporting, reducing human input and errors within environment</li>
               <li>Lead inspections of 13 conference rooms daily and perform project on conference room conversion to complete wireless solutions, reducing average A/V issue count by 30%</li>
               <li>Provision Windows 10/OSX laptops using Microsoft System Center Configuration Manager (SCCM) and JAMF</li>
               <li>Administer local and remote user access and permissions for over 400 employees via Group Policy Objects</li>
@@ -49,11 +50,11 @@
           </div>
           </div>
 
-          <button class="accordion">
+          <button class="company-info">
             <p class="company">NBCUniversal</p>
             <p class="job-period">January 2019 - May 2019</p>
           </button>
-          <div class="panel">
+          <div class="expandable">
           <p class="job-position">MediaTech Intern, Product Delivery</p>
           <div class="job-duties">
             <ul>
@@ -65,11 +66,11 @@
           </div>
           </div>
 
-          <button class="accordion">
-            <p class="company">Cotton On</p>
+          <button class="company-info">
+            <p class="company">Cotton On Group</p>
             <p class="job-period">November 2018 - January 2019</p>
           </button>
-          <div class="panel">
+          <div class="expandable">
           <p class="job-position">IT Support Analyst</p>
           <div class="job-duties">
             <ul>
@@ -83,11 +84,11 @@
           </div>
           </div>
 
-          <button class="accordion">
+          <button class="company-info">
             <p class="company">CSU Northridge</p>
             <p class="job-period">May 2018 - May 2019</p>
           </button>
-          <div class="panel">
+          <div class="expandable">
           <p class="job-position">Web Content Administrator</p>
           <div class="job-duties">
             <ul>
@@ -107,11 +108,11 @@
           </div>
           </div>
 
-          <button class="accordion">
+          <button class="company-info">
             <p class="company">Jewish Federation of Greater LA</p>
             <p class="job-period">August 2018 - December 2018</p>
           </button>
-          <div class="panel">
+          <div class="expandable">
           <p class="job-position">Information Technology Intern</p>
           <div class="job-duties">
             <ul>
@@ -123,9 +124,9 @@
             </ul>
           </div>
           </div>
-
+    </div>
     <div class="footer">
-      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
+      <p>Copyright &copy; 2019-<script>document.write(new Date().getFullYear())</script> Alexander V Baró.</p>
       <p>All Rights Reserved.</p>
     </div>
   </body>
@@ -133,23 +134,22 @@
   <script src="/js/particles.min.js"></script>
   <script>
     /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles-js', 'js/config.json', function() {
-    console.log('callback - particles.js config loaded');
-    });</script>
+    particlesJS.load('particles-js', 'js/config.json');</script>
   <script>
-    var acc = document.getElementsByClassName("accordion");
+    var acc = document.getElementsByClassName("company-info");
     var i;
 
     for (i = 0; i < acc.length; i++) {
       acc[i].addEventListener("click", function() {
         this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight){
-          panel.style.maxHeight = null;
+        var expandable = this.nextElementSibling;
+        if (expandable.style.maxHeight) {
+          expandable.style.maxHeight = null;
         } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
+          expandable.style.maxHeight = expandable.scrollHeight + "px";
         }
       });
     }
   </script>
+
 </html>
