@@ -140,21 +140,81 @@ ul, li {
 		flex-direction: column;
 		min-height: 100%;
   }
+	/*-----------Navbar CSS START-----------*/
+	.sticky {
+  position: fixed;
+  z-index: 10;
+	}
+	.navbar-container {
+	  top: 10%;
+	  background: #171A21;
+	  height: 270px;
+	  width: 90px;
+	  box-shadow: 2px 2px 15px rgba(#171A21, .1);
+	}
+	.navbar-icon {
+	  margin-top: 20px;
+	  margin-left: 37px;
+	  font-size: 1em;
+	}
+	.navbar-title {
+	  margin-left: 34px;
+	  margin-top: 35px;
+		writing-mode: vertical-rl;
+		letter-spacing: .5em;
+		text-transform: uppercase;
+		font-size: 1em;
+	}
+	.nav-open {
+	  height: 100vh;
+	  width: 300px;
+	  background: #171A21;
+	  transition: all .2s ease-out;
+	  opacity: 1;
+	  box-shadow: 2px 2px 15px rgba(#171A21, .1);
+	}
+
+	.nav-open-icon {
+	  text-align: right;
+	  padding: 20px;
+	}
+	.nav-open-menu {
+	  height: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  text-align: center;
+	  margin-top: 30px;
+	}
+	.nav-open-menu a {
+		font-size: 25px;
+		line-height: 2;
+		text-decoration: none;
+		text-decoration-color: none;
+	}
+	.close {
+	  transform: translateX(-300px);
+	  transition: all .2s ease-out;
+	  opacity: 0;
+	}
+	/*-----------Navbar CSS END-----------*/
+	a {
+		color: white;
+	}
 	h1 {
 		font-size: 100px;
 	}
+	p {
+		font-size: 18px;
+	}
 	.footer {
 		font-size: 15px;
-	}
-	.header-img {
-		max-height: 400px;
 	}
 	.headshot {
 		width: 45%;
 		float:right;
 	}
 	.signature {
-		font-size: 30px;
+		font-size: 40px;
 		text-align: right;
 	}
 	.company {

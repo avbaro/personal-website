@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/design-optimized.css">
     <!-- Google Fonts stylesheet -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand&display=swap" rel="stylesheet">
+    <link href="/fontawesome-web/css/all.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="/assets/images/favicons/favicon-76.png"/>
   </head>
       <!-- End of Header (cont. CSS) -->
@@ -24,12 +25,20 @@
       <!-- Particles.js background (Original Auuthor: Vincent Garreau) -->
       <div id="particles-js"></div>
       <!-- Navigation  -->
-      <div class="nav">
-        <a class="nav-item" href="/index.html">Home</a>
-        <a class="nav-item" href="/experience.html">Experience</a>
-        <a class="nav-item" href="/blog.html">Blog</a>
-        <a class="nav-item" href="/contact.html">Contact</a>
+      <div class="navbar-container sticky">
+        <div class="navbar-title"><h4>Navigation</h4></div>
+        <div class="navbar-icon"><i class="fas fa-bars"></i></div>
       </div>
+      <div class="nav-open close sticky">
+        <div class="nav-open-icon"><i class="fas fa-times"></i></div>
+          <div class="nav-open-menu">
+            <a href="/index.html">Home</a>
+            <a href="/experience.html">Experience</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+          </div>
+      </div>
+
       <div class="container">
         <div class="header-img">
           <img src="/assets/images/Headshot.jpg" class="headshot">
@@ -44,6 +53,7 @@
     </div>
   </body>
 
+  <script src="/js/navigation.js"></script>
   <script src="/js/particles.min.js"></script>
   <script>
     /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
