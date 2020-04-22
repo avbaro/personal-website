@@ -40,7 +40,10 @@ body {
 		background-color: #171A21;
 		font-family: Quicksand, sans-serif;
 		color: white;
-		height: 130%;
+		height: 100%;
+}
+a {
+	color: white;
 }
 /*-----------START of Mobile First CSS-----------*/
 .container {
@@ -49,6 +52,25 @@ body {
 		min-height: 100%;
 		margin: 30px auto;
 		text-align: justify;
+}
+.sticky {
+position: relative;
+z-index: 10;
+}
+.navbar-container {
+	background: lightblue;
+	height: 50px;
+	width: 100%;
+}
+.navbar-icon {
+	margin: -24px auto auto 20px;
+	font-size: 1.3em;
+}
+.navbar-title {
+	text-align:center;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+	padding-top: 15px;
 }
 h1 {
 	font-family: 'Bebas Neue';
@@ -108,9 +130,7 @@ button:focus {outline:0;}
 }
 .active, .company-info:hover {
   background: rgba(255,255,255, .50);
-	text-shadow: -3px 3px 0px #383357;
 	letter-spacing: 2;
-	border-radius: 10px 10px 0 0;
 	transition: 0.2s;
 }
 .expandable {
@@ -129,7 +149,7 @@ button:focus {outline:0;}
 }
 ul, li {
 	margin: 5px 5px 15px 15px;
-	list-style-type:circle;
+	list-style-type: circle;
 }
 /*-----------END of Mobile First CSS-----------*/
 /*-----------START of Tablet/Desktop CSS-----------*/
@@ -140,65 +160,8 @@ ul, li {
 		flex-direction: column;
 		min-height: 100%;
   }
-	/*-----------Navbar CSS START-----------*/
-	.sticky {
-  position: fixed;
-  z-index: 10;
-	}
-	.navbar-container {
-	  top: 10%;
-	  background: #171A21;
-	  height: 270px;
-	  width: 90px;
-	  box-shadow: 2px 2px 15px rgba(#171A21, .1);
-	}
-	.navbar-icon {
-	  margin-top: 20px;
-	  margin-left: 37px;
-	  font-size: 1em;
-	}
-	.navbar-title {
-	  margin-left: 34px;
-	  margin-top: 35px;
-		writing-mode: vertical-rl;
-		letter-spacing: .5em;
-		text-transform: uppercase;
-		font-size: 1em;
-	}
-	.nav-open {
-	  height: 100vh;
-	  width: 300px;
-	  background: #171A21;
-	  transition: all .2s ease-out;
-	  opacity: 1;
-	  box-shadow: 2px 2px 15px rgba(#171A21, .1);
-	}
-
-	.nav-open-icon {
-	  text-align: right;
-	  padding: 20px;
-	}
-	.nav-open-menu {
-	  height: 100%;
-	  display: flex;
-	  flex-direction: column;
-	  text-align: center;
-	  margin-top: 30px;
-	}
-	.nav-open-menu a {
-		font-size: 25px;
-		line-height: 2;
-		text-decoration: none;
-		text-decoration-color: none;
-	}
-	.close {
-	  transform: translateX(-300px);
-	  transition: all .2s ease-out;
-	  opacity: 0;
-	}
-	/*-----------Navbar CSS END-----------*/
-	a {
-		color: white;
+	.container {
+		margin-top: 40px;
 	}
 	h1 {
 		font-size: 100px;
