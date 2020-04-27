@@ -14,6 +14,11 @@
 	text-decoration: none;
 	list-style: none;
 }
+
+@font-face {
+    font-family: Bohemian;
+    src: url("TheBohemian.otf") format("opentype");
+}
 /*---------CSS Reset & Variables---------*/
 #particles-js canvas {
     display: block;
@@ -38,13 +43,14 @@ body {
 	background-color: $black;
 	font-family: $text-font;
 	color: white;
-	font-size: 15px;
+	font-size: 16px;
 	&::-webkit-scrollbar { width: .3rem; }
 	&::-webkit-scrollbar-track { background: $black; }
 	&::-webkit-scrollbar-thumb {
-		background: linear-gradient(180deg, $gold 0%, var(--independence) 100%);
+		background: $gold;
 	  border-radius: 20px;
 	}
+	height: 100%;
 }
 
 h1 {
@@ -58,13 +64,13 @@ h1 {
 
 p {
 	margin: 40px auto 0;
-	line-height: 2;
+	line-height: 2.5;
 }
 
 footer {
 	width: 100%;
 	text-align: center;
-	font-size: 8px;
+	font-size: 0.6rem;
 	margin: 10px auto;
 }
 
@@ -117,15 +123,6 @@ footer {
 	margin-left: 1rem;
 }
 
-.logo {
-	font-weight: 700;
-	text-transform: uppercase;
-	margin-bottom: 1rem;
-	text-align: center;
-	font-size: 1.5rem;
-	width: 100%;
-}
-
 .main-container {
 	margin: auto;
 	width: 60%;
@@ -155,9 +152,16 @@ footer {
 	}
 }
 
-.intro {
+.paragraph {
 	grid-column-start: 1;
 	grid-column-end: 3;
 	text-align: justify;
 	width: 100%;
+}
+
+.signature {
+	font-family: 'Bohemian', serif;
+	font-size: 3rem;
+	grid-column-start: 2;
+	grid-column-end: 3;
 }
