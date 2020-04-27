@@ -1,193 +1,162 @@
-/* Optimized CSS file for Mobile and Desktop */
-/* Eerie Black: #171A21 | Nickel: #617073 | Steel Blue: #4281A4 */
-/* Pewter Blue: #9CAFB7 | Granite Gray: #607466 */
-/*---------CSS Reset for all elements---------*/
+/*---------CSS Reset & Variables---------*/
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style: none;
 }
-/*--------------End CSS Reset--------------*/
-/*---------Additional Fonts to Add---------*/
-@font-face {
-  src: url("/assets/East-Liberty.otf");
-  font-family: East-Liberty;
-}
-/*-------------Particles.js CSS-------------*/
-#particles-js canvas {
-    display: block;
-    vertical-align: top;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
-    transition: opacity .8s ease, transform 1.4s ease
-}
-#particles-js {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -100;
-}
-/*-------------Particles.js END-------------*/
-html {
-	height: 100vh;
-}
-body {
-		background-color: #171A21;
-		font-family: Quicksand, sans-serif;
-		color: white;
-		height: 100%;
-}
-a {
-	color: white;
-}
-/*-----------START of Mobile First CSS-----------*/
-.container {
-		width: 70%;
-		max-width: 600px;
-		min-height: 100%;
-		margin: 30px auto;
-		text-align: justify;
-}
-.sticky {
-position: relative;
-z-index: 10;
-}
-.navbar-container {
-	background: lightblue;
-	height: 50px;
-	width: 100%;
-}
-.navbar-icon {
-	margin: -24px auto auto 20px;
-	font-size: 1.3em;
-}
-.navbar-title {
-	text-align:center;
-	letter-spacing: .2em;
-	text-transform: uppercase;
-	padding-top: 15px;
-}
-h1 {
-	font-family: 'Bebas Neue';
-	text-align: center;
-	font-size: 16vw;
-	line-height: 0.9;
-	margin: 20px auto;
-	width: 100%;
-	-webkit-transition: 0.2s all ease;
-  -moz-transition: 0.2s all ease;
-  -o-transition: 0.2s all ease;
-  transition: 0.2s all ease;
-}
-h1:hover {
-	text-shadow: -6px 6px 0px #383357;
-}
-.footer {
-	font-size: 2vw;
-	text-align: center;
-	margin: 10px auto;
-}
-/*-----------index.html specific-----------*/
-.headshot {
-	width: 70%;
-	margin: auto;
-	border-radius: 35%;
-	display: block;
-}
-.signature {
-	font-family: East-Liberty;
-	margin: 30px auto;
-	width: auto;
-	text-align: center;
-	font-size: 9vw;
-}
-/*-----------work.html specific-----------*/
-button:focus {outline:0;}
 
-.company-info {
-	width: 100%;
-	padding: 10px;
-	margin: 8px auto;
-	background: rgba(255,255,255, .40);
-	border-radius: 10px;
-	text-align: right;
-	color: inherit;
-  transition: 0.4s;
+/*---------CSS Reset & Variables---------*/
+#particles-js canvas {
+  display: block;
+  vertical-align: bottom;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+  -webkit-transition: opacity 0.8s ease, -webkit-transform 1.4s ease;
+  transition: opacity 0.8s ease, transform 1.4s ease;
 }
-.company {
-	font-family: 'Bebas Neue';
-	font-size: 9vw;
-	line-height: 0.8;
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -10;
+  top: 0;
+  left: 0;
 }
-.job-period {
-	font-size: 4vw;
-	font-family: Quicksand;
+
+body {
+  background-color: #171A21;
+  font-family: "Spartan";
+  color: white;
+  font-size: 15px;
 }
-.active, .company-info:hover {
-  background: rgba(255,255,255, .50);
-	letter-spacing: 2;
-	transition: 0.2s;
+body::-webkit-scrollbar {
+  width: 0.3rem;
 }
-.expandable {
-	background: rgba(255,255,255, .40);
-	border-radius: 0 0 10px 10px;
-	padding: 0px 5px;
-  max-height: 0;
-  overflow: hidden;
-	text-align: left;
-  transition: max-height 0.2s ease-out;
-	transform: translate(0, -8px);
+body::-webkit-scrollbar-track {
+  background: #171A21;
 }
-.job-position {
-	font-size: 5vw;
-	margin: 6px auto;
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #C49D2A 0%, var(--independence) 100%);
+  border-radius: 20px;
 }
-ul, li {
-	margin: 5px 5px 15px 15px;
-	list-style-type: circle;
+
+h1 {
+  font-family: "Khand";
+  text-shadow: 1px 1px #C49D2A, 2px 2px #C49D2A, 3px 3px #C49D2A, 4px 4px #C49D2A, 5px 5px #C49D2A, 6px 6px #C49D2A, 7px 7px #C49D2A, 8px 8px #C49D2A;
+  text-transform: uppercase;
+  line-height: 0.8;
+  font-size: min(10vw, 150px);
+  margin: auto;
 }
-/*-----------END of Mobile First CSS-----------*/
-/*-----------START of Tablet/Desktop CSS-----------*/
-@media only screen and (min-width: 500px) {
-	body {
-    background-color: #617073;
-		display: flex;
-		flex-direction: column;
-		min-height: 100%;
-  }
-	.container {
-		margin-top: 40px;
-	}
-	h1 {
-		font-size: 100px;
-	}
-	p {
-		font-size: 18px;
-	}
-	.footer {
-		font-size: 15px;
-	}
-	.headshot {
-		width: 45%;
-		float:right;
-	}
-	.signature {
-		font-size: 40px;
-		text-align: right;
-	}
-	.company {
-		font-size: 70px;
-	}
-	.job-period {
-		font-size: 20px;
-	}
-	.job-position {
-		font-size: 32px;
-		line-height: 1;
-	}
-} /*----------END of Tablet/Desktop CSS----------*/
+
+p {
+  margin: 40px auto 0;
+  line-height: 2;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+  margin: 10px auto;
+}
+
+.navbar {
+  width: 4rem;
+  height: 100vh;
+  position: fixed;
+  background-color: #1D2945;
+  transition: width 0.2s ease;
+}
+.navbar:hover {
+  width: 14rem;
+}
+.navbar:hover .link-text {
+  display: block;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  color: #344863;
+  transition: 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.nav-link svg {
+  min-width: 2rem;
+  max-width: 2rem;
+  margin: 0 1rem;
+}
+.nav-link:hover {
+  background: #344863;
+  color: #C49D2A;
+}
+
+.link-text {
+  display: none;
+  margin-left: 1rem;
+}
+
+.logo {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.main-container {
+  margin: auto;
+  width: 60%;
+  max-width: 900px;
+}
+
+.hero-wrapper {
+  margin-top: 50px;
+  display: inline-grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 55% auto;
+}
+
+.headshot-pic {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 560px;
+  border-radius: 0 20%;
+  -webkit-transition: box-shadow 0.2s ease;
+  -ms-transition: box-shadow 0.2s ease;
+  -o-transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
+}
+.headshot-pic:hover {
+  box-shadow: -4px 4px 0px #C49D2A, -10px 10px 0px #DEC753, -14px 14px 0px #FAF480;
+}
+
+.intro {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: justify;
+  width: 100%;
+}
+
+/*# sourceMappingURL=design-optimized.css.map */
