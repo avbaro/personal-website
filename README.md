@@ -3,5 +3,5 @@ This wesbite is intended to be a practical sandox for me to learn front end deve
 
 ## Languages Used:
 - HTML
-- CSS
+- Sass (SCSS)
 - Javascript
