@@ -217,6 +217,7 @@ ol{
 			flex-direction: row;
 			margin: 0.8vw 0.6vw;
 			width: min(15vw, 6rem);
+			fill: #FFFFFF;
 		}
 }
 
@@ -234,18 +235,19 @@ ol{
 
 .card {
 		width: 270px;
-		height: 260px;
+		height: 230px;
 		margin-bottom: 20px;
 		border-radius: 3%;
 		background-color: $indigo;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transition: all 0.3s ease;
+		transition: all 0.2s ease;
 		&:hover {
 			height: 290px;
 			.card-text {
 				opacity: 1;
+				max-height: 80px;
 			}
 			.card-icon {
 				background-position: -160px;
@@ -256,7 +258,7 @@ ol{
 					-webkit-background-clip: text;
 					-webkit-text-fill-color: transparent;
 					opacity: 1;
-					transition: all 0.3s ease-in-out;
+					transition: all 0.2s ease-in-out;
 				}
 			}
 		}
@@ -279,15 +281,20 @@ ol{
 		.card-title {
 			text-align: center;
 			font-size: min(5vw, 1.6rem);
-			margin: 10px;
+			margin: 15px;
 			color: white;
+			text-transform: uppercase;
+			letter-spacing: 3px;
 		}
 		.card-text {
-			text-align: center;
-			color: white;
 			opacity: 0;
-			transition: 0.3s ease-in-out;
+			text-align: center;
+			line-height: 25px;
+			color: white;
 			margin: 0 10px;
+			transition: 0.2s ease-in-out;
+			max-height: 0;
+			overflow: hidden;
 		}
 }
 
@@ -327,7 +334,7 @@ ol{
 			grid-column-start: 1;
 			grid-column-end: 3;
 			border-radius: 0 20%;
-			border: 4px solid $cadet-blue;
+			border: 5px solid $cadet-blue;
 		}
 
 		h1 {
