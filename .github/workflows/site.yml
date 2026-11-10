@@ -1,0 +1,89 @@
+name: Site
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  BUCKET: www.alexanderbaro.com
+  DISTRIBUTION_ID: EDDWWKADONCMF
+  AWS_REGION: us-east-1
+  DEPLOY_ROLE: arn:aws:iam::836766487061:role/github-deploy-personal-website
+  SITE_URL: https://www.alexanderbaro.com
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Size budget and local references
+        run: python3 scripts/check_site.py
+
+      - name: Validate HTML
+        run: npx --yes html-validate@9 "site/**/*.html"
+
+  deploy:
+    needs: check
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.DEPLOY_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Each pass uploads one group of files with its own Cache-Control header.
+      # The first pass also removes files that are no longer in site/.
+      - name: Upload images, fonts and icons (cache 7 days)
+        run: |
+          aws s3 sync site/ "s3://$BUCKET/" --delete \
+            --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.pdf" \
+            --cache-control "public, max-age=604800"
+
+      - name: Upload CSS, JS and PDFs (cache 1 hour)
+        run: |
+          aws s3 sync site/ "s3://$BUCKET/" \
+            --exclude "*" --include "*.css" --include "*.js" --include "*.pdf" \
+            --cache-control "public, max-age=3600"
+
+      - name: Upload HTML (always revalidate)
+        run: |
+          aws s3 sync site/ "s3://$BUCKET/" \
+            --exclude "*" --include "*.html" \
+            --cache-control "public, max-age=0, must-revalidate"
+
+      - name: Invalidate CloudFront
+        run: |
+          id=$(aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" \
+            --paths "/*" --query Invalidation.Id --output text)
+          echo "Invalidation $id"
+          aws cloudfront wait invalidation-completed --distribution-id "$DISTRIBUTION_ID" --id "$id"
+
+      - name: Smoke test
+        run: |
+          fail=0
+          expect() {
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE_URL$1")
+            if [ "$code" = "$2" ]; then echo "ok   $1 -> $code"; else echo "FAIL $1 -> $code (expected $2)"; fail=1; fi
+          }
+          expect / 200
+          expect /style.css 200
+          expect /script.js 200
+          expect /personal-website-v3-assets/images/profile_picture.jpg 200
+          expect /AVBaro_Resume.pdf 200
+          expect /this-page-does-not-exist 404
+          exit $fail
