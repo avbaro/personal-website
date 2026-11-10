@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     body.classList.toggle("dark", isDark);
     if (wordmark) {
       wordmark.src = isDark
-        ? "personal-website-v3-assets/images/wordmarks/wordmark_dark.svg"
-        : "personal-website-v3-assets/images/wordmarks/wordmark_light.svg";
+        ? "/personal-website-v3-assets/images/wordmarks/wordmark_dark.svg"
+        : "/personal-website-v3-assets/images/wordmarks/wordmark_light.svg";
     }
     favicon.href = isDark
       ? "/personal-website-v3-assets/images/favicon/favicon-dark.ico"
