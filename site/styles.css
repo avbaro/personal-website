@@ -140,9 +140,30 @@ a { color: inherit; }
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 280px;
-  background: linear-gradient(180deg, transparent 0%, var(--bg) 100%);
   pointer-events: none;
 }
+/* Two fixed-color layers cross-faded by opacity, not by animating the
+   gradient itself - browsers can't interpolate a gradient's color stops,
+   so swapping var(--bg) directly here would snap instantly while body's
+   solid background-color is still mid-transition, leaving a hard seam at
+   the hero/experience boundary for the duration of the theme switch. */
+.hero-fade::before,
+.hero-fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.4s ease;
+}
+.hero-fade::before {
+  background: linear-gradient(180deg, transparent 0%, #F5F5F4 100%);
+  opacity: 1;
+}
+.hero-fade::after {
+  background: linear-gradient(180deg, transparent 0%, #0B0D12 100%);
+  opacity: 0;
+}
+[data-theme="dark"] .hero-fade::before { opacity: 0; }
+[data-theme="dark"] .hero-fade::after { opacity: 1; }
 
 .theme-toggle {
   position: absolute;
