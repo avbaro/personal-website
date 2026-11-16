@@ -77,14 +77,20 @@
     var needed = Math.ceil((el.clientWidth || window.innerWidth) / tokenWidth) + 8;
     el.textContent = '';
     var frag = document.createDocumentFragment();
+    var rowTokens = [];
+    var rowEls = [];
     for (var i = 0; i < rows; i++) {
       var parts = [];
       for (var j = 0; j < needed; j++) parts.push(BYTES[(i * 3 + j) % BYTES.length]);
       var line = document.createElement('div');
       line.textContent = parts.join(' ');
       frag.appendChild(line);
+      rowTokens.push(parts);
+      rowEls.push(line);
     }
     el.appendChild(frag);
+    el._rowTokens = rowTokens;
+    el._rowEls = rowEls;
   }
 
   var binaryEls = [].slice.call(document.querySelectorAll('[data-binary]'));
@@ -100,6 +106,47 @@
     clearTimeout(binaryResizeTimer);
     binaryResizeTimer = setTimeout(fillAllBinary, 200);
   });
+
+  /* Occasional bit-flicker: a random digit in the binary field flips
+     0<->1 for a brief moment then reverts, like a bit actually toggling
+     in memory. Operates on the stored token arrays (not full re-render)
+     so each flicker only touches one row's text. Paused for
+     reduced-motion visitors and while the tab is hidden. */
+  function scheduleFlicker() {
+    var delay = 350 + Math.random() * 650;
+    setTimeout(flickerBit, delay);
+  }
+
+  function flickerBit() {
+    if (!reduceMotion && !document.hidden && binaryEls.length) {
+      var el = binaryEls[Math.floor(Math.random() * binaryEls.length)];
+      var rows = el._rowTokens;
+      if (rows && rows.length) {
+        var ri = Math.floor(Math.random() * rows.length);
+        var tokens = rows[ri];
+        var rowEl = el._rowEls[ri];
+        if (tokens && tokens.length && rowEl) {
+          (function () {
+            var ti = Math.floor(Math.random() * tokens.length);
+            var original = tokens[ti];
+            var bi = Math.floor(Math.random() * original.length);
+            var flipped = original.substr(0, bi) + (original[bi] === '0' ? '1' : '0') + original.substr(bi + 1);
+            tokens[ti] = flipped;
+            rowEl.textContent = tokens.join(' ');
+            setTimeout(function () {
+              if (tokens[ti] === flipped) {
+                tokens[ti] = original;
+                rowEl.textContent = tokens.join(' ');
+              }
+            }, 180 + Math.random() * 220);
+          })();
+        }
+      }
+    }
+    scheduleFlicker();
+  }
+
+  if (!reduceMotion) scheduleFlicker();
 
   /* ───────────── Hero aurora drifts on its own ─────────────
      Each blob wanders around its home spot along a few layered,
