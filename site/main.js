@@ -51,11 +51,35 @@
     return ch.charCodeAt(0).toString(2).padStart(8, '0');
   });
 
+  /* A row used to be a fixed 28 byte-groups regardless of viewport width,
+     which comfortably overflowed a normal window (clipped by overflow:hidden)
+     but fell short on a wide monitor, leaving bare background past where the
+     fixed-length row ran out. Measure the actual per-token width at the
+     current font-size/letter-spacing and generate just enough tokens to
+     cover the element's current width, so it still fills edge-to-edge on
+     any screen - and regenerate on resize so docking into a wider display
+     without a reload doesn't leave the same gap. */
+  function measureTokenWidth(el) {
+    var probe = document.createElement('div');
+    probe.className = el.className;
+    probe.style.cssText = 'position:absolute;visibility:hidden;inset:auto;white-space:nowrap;';
+    probe.textContent = BYTES[0];
+    document.body.appendChild(probe);
+    var one = probe.offsetWidth;
+    probe.textContent = BYTES[0] + ' ' + BYTES[0];
+    var two = probe.offsetWidth;
+    document.body.removeChild(probe);
+    return (two - one) || 70;
+  }
+
   function fillBinary(el, rows) {
+    var tokenWidth = measureTokenWidth(el);
+    var needed = Math.ceil((el.clientWidth || window.innerWidth) / tokenWidth) + 8;
+    el.textContent = '';
     var frag = document.createDocumentFragment();
     for (var i = 0; i < rows; i++) {
       var parts = [];
-      for (var j = 0; j < 28; j++) parts.push(BYTES[(i * 3 + j) % BYTES.length]);
+      for (var j = 0; j < needed; j++) parts.push(BYTES[(i * 3 + j) % BYTES.length]);
       var line = document.createElement('div');
       line.textContent = parts.join(' ');
       frag.appendChild(line);
@@ -63,8 +87,18 @@
     el.appendChild(frag);
   }
 
-  document.querySelectorAll('[data-binary]').forEach(function (el) {
-    fillBinary(el, parseInt(el.getAttribute('data-binary'), 10) || 90);
+  var binaryEls = [].slice.call(document.querySelectorAll('[data-binary]'));
+  function fillAllBinary() {
+    binaryEls.forEach(function (el) {
+      fillBinary(el, parseInt(el.getAttribute('data-binary'), 10) || 90);
+    });
+  }
+  fillAllBinary();
+
+  var binaryResizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(binaryResizeTimer);
+    binaryResizeTimer = setTimeout(fillAllBinary, 200);
   });
 
   /* ───────────── Hero aurora drifts on its own ─────────────
