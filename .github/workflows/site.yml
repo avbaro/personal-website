@@ -13,7 +13,7 @@ env:
   BUCKET: www.alexanderbaro.com
   DISTRIBUTION_ID: EDDWWKADONCMF
   AWS_REGION: us-east-1
-  DEPLOY_ROLE: arn:aws:iam::836766487061:role/github-deploy-personal-website
+  DEPLOY_ROLE: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/github-deploy-personal-website
   SITE_URL: https://www.alexanderbaro.com
 
 jobs:

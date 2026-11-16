@@ -86,7 +86,22 @@ The workflow signs in to AWS with GitHub OIDC, so there are no stored keys.
 It assumes the role `github-deploy-personal-website`, which only the
 `master` branch of this repo can assume, and which can only write to the
 site bucket and invalidate this one distribution. The one-time setup is in
-`infra/setup.sh`, which an admin runs once (for example, in AWS CloudShell).
+`infra/setup.sh`, which an admin runs once (for example, in AWS CloudShell);
+it reads the account ID from the signed-in session rather than from a file.
+
+The AWS account ID itself is deliberately kept out of this public repo. The
+two policy files under `infra/` use the placeholder `ACCOUNT_ID_PLACEHOLDER`
+instead of the real number — `setup.sh` substitutes it in at apply time,
+into a temp copy that's never written back to the repo. The workflow needs
+the account ID too (to build the role ARN it assumes), so it's stored as a
+repository **Variable** (Settings → Secrets and variables → Actions →
+Variables) named `AWS_ACCOUNT_ID`, referenced as `${{ vars.AWS_ACCOUNT_ID }}`
+— a Variable, not a Secret, since nothing about it is sensitive enough to
+need redaction, but it still keeps the digits out of the diff-able, grep-able
+source. Note this isn't a hard security boundary: the Actions run logs for a
+public repo are themselves public, and the "configure AWS credentials" step
+can end up echoing the assumed role ARN (account ID included) into them
+regardless of where the ARN's text lives in this repo.
 
 **Rolling back:** revert the commit on `master` and let the pipeline
 redeploy, or restore a previous object version directly in S3 — versioning

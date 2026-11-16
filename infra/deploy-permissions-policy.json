@@ -24,7 +24,7 @@
         "cloudfront:CreateInvalidation",
         "cloudfront:GetInvalidation"
       ],
-      "Resource": "arn:aws:cloudfront::836766487061:distribution/EDDWWKADONCMF"
+      "Resource": "arn:aws:cloudfront::ACCOUNT_ID_PLACEHOLDER:distribution/EDDWWKADONCMF"
     }
   ]
 }
