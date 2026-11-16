@@ -158,8 +158,8 @@
   var hero = document.querySelector('.hero');
   var glow = document.querySelector('.binary--glow');
   var blobs = [
-    { el: document.querySelector('.aurora--a'), home: { x: 65, y: 40 },   range: { x: 18, y: 16 } },
-    { el: document.querySelector('.aurora--b'), home: { x: 54.5, y: 72 }, range: { x: 22, y: 12 } }
+    { el: document.querySelector('.aurora--a'), home: { x: 65, y: 40 },   range: { x: 23, y: 20 } },
+    { el: document.querySelector('.aurora--b'), home: { x: 54.5, y: 72 }, range: { x: 28, y: 15 } }
   ];
 
   function waves() {
