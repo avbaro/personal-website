@@ -142,32 +142,29 @@ a { color: inherit; }
   height: 280px;
   pointer-events: none;
 }
-/* A fixed light-theme gradient sits underneath at a constant, untransitioned
-   opacity: 1, and only the dark-theme gradient on top animates its opacity.
-   That gives an exact linear color mix at every instant - two layers that
-   BOTH cross-fade their opacity at once (the previous version of this fix)
-   don't: compositing two simultaneously-transparent layers isn't the same
-   as linearly blending two colors, so a small mismatch against body's
-   plain background-color transition reappeared, worst mid-fade and under
-   rapid re-toggling. Animating gradient color stops directly isn't an
-   option either - browsers can't interpolate those, so they'd snap
-   instantly against body's still-transitioning solid color. */
-.hero-fade::before,
-.hero-fade::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+/* Registering --hero-fade-color with @property lets the browser treat it
+   as a real <color>, so the transition below genuinely interpolates it
+   frame-by-frame - unlike a plain var(), which is just text substitution
+   and can't animate. That means the gradient's end-color itself animates
+   smoothly in lockstep with body's background-color transition: exact
+   linear match at every instant, no second layer, no compositing of two
+   semi-transparent layers (which has its own problems - two layers that
+   both cross-fade opacity at once produce a "crossfade dip" that doesn't
+   match a linear blend, and freezing one layer at opacity 1 to fix that
+   leaves a permanent residue bleeding through the gradient's partial-alpha
+   middle band in steady state, showing up as a dull gray bar). */
+@property --hero-fade-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #F5F5F4;
 }
-.hero-fade::before {
-  background: linear-gradient(180deg, transparent 0%, #F5F5F4 100%);
-  opacity: 1;
+:root { --hero-fade-color: #F5F5F4; }
+[data-theme="dark"] { --hero-fade-color: #0B0D12; }
+
+.hero-fade {
+  background: linear-gradient(180deg, transparent 0%, var(--hero-fade-color) 100%);
+  transition: --hero-fade-color 0.4s ease;
 }
-.hero-fade::after {
-  background: linear-gradient(180deg, transparent 0%, #0B0D12 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-[data-theme="dark"] .hero-fade::after { opacity: 1; }
 
 .theme-toggle {
   position: absolute;
@@ -297,16 +294,16 @@ a { color: inherit; }
 }
 .scroll-blob--a {
   bottom: -180px;
-  width: 400px; height: 400px;
-  margin-left: -200px;
+  width: 520px; height: 520px;
+  margin-left: -260px;
   background: var(--accent);
   opacity: var(--scroll-a-op);
   transition: transform 0.6s cubic-bezier(.2, .7, .2, 1);
 }
 .scroll-blob--b {
   bottom: -160px;
-  width: 360px; height: 360px;
-  margin-left: -180px;
+  width: 470px; height: 470px;
+  margin-left: -235px;
   background: var(--accent-2);
   opacity: var(--scroll-b-op);
   transition: transform 0.8s cubic-bezier(.2, .7, .2, 1);
