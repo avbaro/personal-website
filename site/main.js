@@ -163,10 +163,10 @@
   ];
 
   function waves() {
-    // three sines per axis, periods 28–75s, random phase
+    // three sines per axis, periods ~25.5-68s (28-75s sped up 10%), random phase
     var w = [];
     for (var i = 0; i < 3; i++) {
-      w.push({ f: (2 * Math.PI) / (28 + Math.random() * 47), p: Math.random() * 2 * Math.PI, a: [0.55, 0.3, 0.15][i] });
+      w.push({ f: (2 * Math.PI) / (28 + Math.random() * 47) * 1.1, p: Math.random() * 2 * Math.PI, a: [0.55, 0.3, 0.15][i] });
     }
     return w;
   }
