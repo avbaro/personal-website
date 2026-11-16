@@ -5,9 +5,9 @@ A static site: plain HTML, CSS and JavaScript. No build step, no dependencies.
 ```
 index.html        page markup and content
 styles.css        all styling, light and dark themes
-main.js           theme toggle, cursor aurora, binary background, live spec labels,
+main.js           theme toggle, drifting aurora blobs, binary background, live spec labels,
                   scroll blobs, coffee status
-assets/portrait.jpg
+assets/portrait.webp
 assets/fonts/      JetBrains Mono (self-hosted, SIL OFL 1.1)
 assets/*.png, favicon.ico, assets/favicon.svg, site.webmanifest   icons
 ```

@@ -208,6 +208,18 @@
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
+
+      // Terminal-style flash on the contact box once the scroll lands
+      if (link.classList.contains('contact-jump') && !reduceMotion) {
+        var box = target.querySelector('.spec-box');
+        if (box) {
+          box.classList.remove('flash');
+          void box.offsetWidth; // restart the animation if it's already mid-flash
+          setTimeout(function () { box.classList.add('flash'); }, duration);
+          box.addEventListener('animationend', function () { box.classList.remove('flash'); }, { once: true });
+        }
+      }
+
       if (history.pushState) history.pushState(null, '', link.getAttribute('href'));
     });
   });

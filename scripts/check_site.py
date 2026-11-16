@@ -52,7 +52,7 @@ def resolve(ref, page):
     else:
         target = page.parent / path
     if path.endswith("/") or target == SITE:
-        target = SITE / "home.html"
+        target = SITE / "index.html"
     return target
 
 

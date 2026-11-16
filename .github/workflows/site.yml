@@ -81,9 +81,9 @@ jobs:
             if [ "$code" = "$2" ]; then echo "ok   $1 -> $code"; else echo "FAIL $1 -> $code (expected $2)"; fail=1; fi
           }
           expect / 200
-          expect /style.css 200
-          expect /script.js 200
-          expect /personal-website-v3-assets/images/profile_picture.jpg 200
+          expect /styles.css 200
+          expect /main.js 200
+          expect /assets/portrait.webp 200
           expect /AVBaro_Resume.pdf 200
           expect /this-page-does-not-exist 404
           exit $fail

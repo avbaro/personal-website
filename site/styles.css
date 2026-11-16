@@ -23,6 +23,7 @@
   --scroll-b-op: 0.23;
   --btn-bg: rgba(255, 255, 255, 0.6);
   --btn-border: rgba(10, 10, 10, 0.15);
+  --flash-tint: rgba(82, 9, 208, 0.14);
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -41,6 +42,7 @@
   --scroll-a-op: 0.34;
   --scroll-b-op: 0.26;
   --btn-bg: rgba(255, 255, 255, 0.06);
+  --flash-tint: rgba(34, 211, 238, 0.16);
   --btn-border: rgba(255, 255, 255, 0.2);
 }
 
@@ -188,6 +190,8 @@ a { color: inherit; }
   justify-content: space-between;
   gap: 24px;
 }
+
+.spec-head-h2 { all: unset; }
 
 .spec-box {
   border: 1px dashed var(--muted);
@@ -410,6 +414,21 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 720px) {
   .hero-actions { top: 16px; left: 20px; right: 20px; justify-content: space-between; }
+}
+
+/* ───────────── Contact-box terminal flash ─────────────
+   A hard on/off blink (no easing) like a terminal bell or a
+   cursor blink, played once the contact shortcut's scroll lands. */
+
+.contact-list.flash {
+  animation: contact-flash 0.3s steps(1, end) 3;
+}
+@keyframes contact-flash {
+  0%, 100% { border-color: var(--muted-lo); background: transparent; }
+  50% { border-color: var(--link); background: var(--flash-tint); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-list.flash { animation: none; }
 }
 
 /* ───────────── Tablets (721–1023px) ─────────────
