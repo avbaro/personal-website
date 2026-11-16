@@ -3,6 +3,6 @@
   "private": true,
   "description": "Build/check tooling for alexanderbaro.com. Not a runtime dependency of the site itself.",
   "devDependencies": {
-    "html-validate": "9.7.1"
+    "html-validate": "11.21.1"
   }
 }
