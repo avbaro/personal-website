@@ -244,7 +244,7 @@ a { color: inherit; }
 
 .spec-box {
   border: 1px dashed var(--muted);
-  padding: 26px 30px;
+  padding: 18px 20px;
   background: color-mix(in srgb, var(--bg) 20%, transparent);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
@@ -266,11 +266,11 @@ a { color: inherit; }
 .about .link { text-underline-offset: 3px; }
 
 .portrait-spec { flex: 0 0 auto; }
-.photo-box { padding: 22px; line-height: 0; }
+.photo-box { padding: 16px; line-height: 0; }
 
 .portrait {
   display: block;
-  width: 300px;
+  width: 336px;
   max-width: 70vw;
   aspect-ratio: 1 / 1;
   height: auto;
@@ -544,11 +544,11 @@ html { scroll-behavior: smooth; }
   /* stretch both frames to the same height, contents centred */
   .hero-text > .spec:first-child .spec-box,
   .portrait-spec .photo-box { flex: 1; display: flex; align-items: center; justify-content: center; }
-  .hero-text > .spec:first-child .spec-box { padding: 20px 24px; }
+  .hero-text > .spec:first-child .spec-box { padding: 14px 18px; }
   .wordmark { width: 100%; }
 
-  .photo-box { padding: 16px; }
-  .portrait { width: clamp(150px, 22vw, 210px); border-radius: 18px; }
+  .photo-box { padding: 12px; }
+  .portrait { width: clamp(165px, 24vw, 232px); border-radius: 18px; }
 }
 
 /* ───────────── Small screens ───────────── */
@@ -556,7 +556,7 @@ html { scroll-behavior: smooth; }
 @media (max-width: 720px) {
   .hero-inner { padding: 96px 20px 48px; }
   .section, .footer { padding-left: 20px; padding-right: 20px; }
-  .spec-box { padding: 20px; }
+  .spec-box { padding: 14px; }
   .section .spec-box { padding: 24px 16px; }
   .role { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .role-meta { gap: 6px; }
