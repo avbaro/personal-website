@@ -258,8 +258,8 @@ a { color: inherit; }
   font-size: 14px;
   line-height: 1.6;
   text-align: justify;
-  -webkit-hyphens: auto;
-          hyphens: auto;
+  -webkit-hyphens: none;
+          hyphens: none;
   color: var(--muted);
 }
 .about strong { color: var(--fg); font-weight: 500; }
@@ -549,7 +549,7 @@ html { scroll-behavior: smooth; }
   .role-meta .ver { padding: 2px 8px; font-size: 11px; }
   .role-title { font-size: 17px; }
   .contact-list { font-size: 13px; }
-  .about { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+  .about { text-align: left; }
 }
 
 /* ───────────── Reduced motion ───────────── */
