@@ -292,18 +292,26 @@ a { color: inherit; }
   filter: blur(110px);
   will-change: transform;
 }
+/* Sized with clamp(min, Nvw, max) so both blobs scale down together as the
+   viewport narrows. B's three numbers are always exactly 0.9x A's (min,
+   vw-coefficient and max alike), so the two stay at a fixed size ratio to
+   each other at every width, not just at the extremes. They're allowed to
+   run past the viewport edges at the high end - .lower clips, not hides,
+   so that's intentional, not an overflow bug. margin-left mirrors the
+   width clamp (halved and negated) to keep each blob centered on the same
+   point as it grows and shrinks. */
 .scroll-blob--a {
   bottom: -180px;
-  width: 520px; height: 520px;
-  margin-left: -260px;
+  width: clamp(360px, 56vw, 760px); height: clamp(360px, 56vw, 760px);
+  margin-left: clamp(-380px, -28vw, -180px);
   background: var(--accent);
   opacity: var(--scroll-a-op);
   transition: transform 0.6s cubic-bezier(.2, .7, .2, 1);
 }
 .scroll-blob--b {
   bottom: -160px;
-  width: 470px; height: 470px;
-  margin-left: -235px;
+  width: clamp(324px, 50.4vw, 684px); height: clamp(324px, 50.4vw, 684px);
+  margin-left: clamp(-342px, -25.2vw, -162px);
   background: var(--accent-2);
   opacity: var(--scroll-b-op);
   transition: transform 0.8s cubic-bezier(.2, .7, .2, 1);
