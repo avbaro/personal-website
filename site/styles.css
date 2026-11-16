@@ -417,11 +417,11 @@ html { scroll-behavior: smooth; }
 }
 
 /* ───────────── Contact-box terminal flash ─────────────
-   A hard on/off blink (no easing) like a terminal bell or a
-   cursor blink, played once the contact shortcut's scroll lands. */
+   A soft eased glow pulse, played twice once the contact
+   shortcut's scroll lands. */
 
 .contact-list.flash {
-  animation: contact-flash 0.3s steps(1, end) 3;
+  animation: contact-flash 0.9s ease-in-out 2;
 }
 @keyframes contact-flash {
   0%, 100% { border-color: var(--muted-lo); background: transparent; }
