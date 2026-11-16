@@ -142,17 +142,21 @@ a { color: inherit; }
   height: 280px;
   pointer-events: none;
 }
-/* Two fixed-color layers cross-faded by opacity, not by animating the
-   gradient itself - browsers can't interpolate a gradient's color stops,
-   so swapping var(--bg) directly here would snap instantly while body's
-   solid background-color is still mid-transition, leaving a hard seam at
-   the hero/experience boundary for the duration of the theme switch. */
+/* A fixed light-theme gradient sits underneath at a constant, untransitioned
+   opacity: 1, and only the dark-theme gradient on top animates its opacity.
+   That gives an exact linear color mix at every instant - two layers that
+   BOTH cross-fade their opacity at once (the previous version of this fix)
+   don't: compositing two simultaneously-transparent layers isn't the same
+   as linearly blending two colors, so a small mismatch against body's
+   plain background-color transition reappeared, worst mid-fade and under
+   rapid re-toggling. Animating gradient color stops directly isn't an
+   option either - browsers can't interpolate those, so they'd snap
+   instantly against body's still-transitioning solid color. */
 .hero-fade::before,
 .hero-fade::after {
   content: '';
   position: absolute;
   inset: 0;
-  transition: opacity 0.4s ease;
 }
 .hero-fade::before {
   background: linear-gradient(180deg, transparent 0%, #F5F5F4 100%);
@@ -161,8 +165,8 @@ a { color: inherit; }
 .hero-fade::after {
   background: linear-gradient(180deg, transparent 0%, #0B0D12 100%);
   opacity: 0;
+  transition: opacity 0.4s ease;
 }
-[data-theme="dark"] .hero-fade::before { opacity: 0; }
 [data-theme="dark"] .hero-fade::after { opacity: 1; }
 
 .theme-toggle {
