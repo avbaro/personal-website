@@ -2,8 +2,14 @@ name: Site
 
 on:
   pull_request:
+    paths-ignore:
+      - '**/README.md'
+      - 'LICENSE'
   push:
     branches: [master]
+    paths-ignore:
+      - '**/README.md'
+      - 'LICENSE'
   workflow_dispatch:
 
 permissions:
@@ -20,13 +26,21 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Size budget and local references
         run: python3 scripts/check_site.py
 
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install check tooling
+        run: npm ci
+
       - name: Validate HTML
-        run: npx --yes html-validate@9 "site/**/*.html"
+        run: npx html-validate "site/**/*.html"
 
   deploy:
     needs: check
@@ -39,9 +53,9 @@ jobs:
       group: deploy-production
       cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4.3.1
         with:
           role-to-assume: ${{ env.DEPLOY_ROLE }}
           aws-region: ${{ env.AWS_REGION }}
@@ -86,4 +100,23 @@ jobs:
           expect /assets/portrait.webp 200
           expect /AVBaro_Resume.pdf 200
           expect /this-page-does-not-exist 404
+
+          # The deploy step above gives HTML, CSS/JS, and images/fonts each a
+          # different Cache-Control lifetime via separate S3 syncs. Confirm
+          # that actually landed, so a reordered sync step or a tweaked
+          # --exclude pattern fails loudly here instead of silently serving
+          # stale HTML to visitors later.
+          expect_cache_control() {
+            header=$(curl -s -D - -o /dev/null "$SITE_URL$1" | tr -d '\r' | grep -i '^cache-control:' | cut -d' ' -f2-)
+            if [ "$header" = "$2" ]; then
+              echo "ok   $1 cache-control -> $header"
+            else
+              echo "FAIL $1 cache-control -> '$header' (expected '$2')"
+              fail=1
+            fi
+          }
+          expect_cache_control / "public, max-age=0, must-revalidate"
+          expect_cache_control /styles.css "public, max-age=3600"
+          expect_cache_control /assets/portrait.webp "public, max-age=604800"
+
           exit $fail

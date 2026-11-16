@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Opens a PR to bump an action's pinned commit SHA when a new version
+  # ships, so workflow dependencies stay current without ever auto-trusting
+  # a moved tag (see .github/workflows/site.yml, which pins by SHA).
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Keeps the html-validate devDependency (used only by CI) current.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"

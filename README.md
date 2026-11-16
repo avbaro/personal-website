@@ -73,13 +73,21 @@ GitHub Actions (`.github/workflows/site.yml`) handles everything:
 - **Every pull request** runs the checks: an image size budget (500 KB per
   image, 5 MB total for the whole site) and a check that every local
   `href`/`src`/`url()` resolves to a real file (`scripts/check_site.py`), then
-  HTML validation (`html-validate`).
+  HTML validation (`html-validate`, pinned to an exact version via
+  `package.json`/`package-lock.json` and installed with `npm ci` — not a
+  floating `npx <pkg>@<major>`, so a new release of the tool can't change
+  what counts as a lint error on a commit that touched nothing).
+  Docs-only commits (`**/README.md`, `LICENSE`) skip the pipeline entirely
+  via `paths-ignore`.
 - **Every push to `master`** runs the same checks, then deploys:
   - Syncs `site/` to S3 with cache headers by file type: images/fonts/icons
     cache 7 days, CSS/JS/PDF cache 1 hour, HTML always revalidates.
   - Invalidates the whole CloudFront distribution and waits for it to finish.
   - Runs a smoke test against the live site (`/`, `/styles.css`, `/main.js`,
-    `/assets/portrait.webp`, `/AVBaro_Resume.pdf`, and a 404 check).
+    `/assets/portrait.webp`, `/AVBaro_Resume.pdf`, a 404 check, and that each
+    of the three cache tiers above actually got the `Cache-Control` header it
+    was supposed to — this is the check that would catch a reordered sync
+    step quietly serving stale HTML).
 - **Manual redeploy:** Actions → Site → Run workflow.
 
 The workflow signs in to AWS with GitHub OIDC, so there are no stored keys.
@@ -88,6 +96,15 @@ It assumes the role `github-deploy-personal-website`, which only the
 site bucket and invalidate this one distribution. The one-time setup is in
 `infra/setup.sh`, which an admin runs once (for example, in AWS CloudShell);
 it reads the account ID from the signed-in session rather than from a file.
+
+Third-party Actions (`actions/checkout`, `actions/setup-node`,
+`aws-actions/configure-aws-credentials`) are pinned to an exact commit SHA,
+not a floating version tag — the deploy job hands that last one credentials
+that can write to the production bucket, so a tag that got moved to a
+compromised commit would otherwise run untrusted code with those
+credentials on the next push. `.github/dependabot.yml` opens a PR to bump
+the pinned SHA (and the `html-validate` version) whenever a new release
+ships, so updates still happen, just reviewed rather than auto-trusted.
 
 The AWS account ID itself is deliberately kept out of this public repo. The
 two policy files under `infra/` use the placeholder `ACCOUNT_ID_PLACEHOLDER`
