@@ -110,10 +110,15 @@
   /* Occasional bit-flicker: a random digit in the binary field flips
      0<->1 for a brief moment then reverts, like a bit actually toggling
      in memory. Operates on the stored token arrays (not full re-render)
-     so each flicker only touches one row's text. Paused for
-     reduced-motion visitors and while the tab is hidden. */
+     so each flicker only touches one row's text. Runs several
+     concurrent, independently-scheduled chains (rather than one flip
+     at a time) so flickers show up scattered across the whole binary
+     field rather than in a single spot. Paused for reduced-motion
+     visitors and while the tab is hidden. */
+  var FLICKER_CONCURRENCY = 6;
+
   function scheduleFlicker() {
-    var delay = 350 + Math.random() * 650;
+    var delay = 120 + Math.random() * 280;
     setTimeout(flickerBit, delay);
   }
 
@@ -146,7 +151,9 @@
     scheduleFlicker();
   }
 
-  if (!reduceMotion) scheduleFlicker();
+  if (!reduceMotion) {
+    for (var flickerChain = 0; flickerChain < FLICKER_CONCURRENCY; flickerChain++) scheduleFlicker();
+  }
 
   /* ───────────── Hero aurora drifts on its own ─────────────
      Each blob wanders around its home spot along a few layered,
