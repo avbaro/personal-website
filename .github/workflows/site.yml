@@ -1,4 +1,4 @@
-name: Site
+name: Deploy alexanderbaro.com
 
 on:
   pull_request:

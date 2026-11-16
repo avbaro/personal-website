@@ -88,7 +88,7 @@ GitHub Actions (`.github/workflows/site.yml`) handles everything:
     of the three cache tiers above actually got the `Cache-Control` header it
     was supposed to — this is the check that would catch a reordered sync
     step quietly serving stale HTML).
-- **Manual redeploy:** Actions → Site → Run workflow.
+- **Manual redeploy:** Actions → Deploy alexanderbaro.com → Run workflow.
 
 The workflow signs in to AWS with GitHub OIDC, so there are no stored keys.
 It assumes the role `github-deploy-personal-website`, which only the
