@@ -96,7 +96,18 @@ a { color: inherit; }
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: clamp(720px, 100vh, 960px);
+  min-height: clamp(640px, 92vh, 880px);
+}
+
+.aurora-field {
+  /* contains the aurora blobs and fades them out before .hero's own edge,
+     so a moving blob never shows a hard clipped edge against the hero bounds */
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 60% 45%, #000 55%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 70% at 60% 45%, #000 55%, transparent 100%);
 }
 
 .aurora {
@@ -155,10 +166,10 @@ a { color: inherit; }
 
 .hero-inner {
   position: relative;
-  min-height: clamp(720px, 100vh, 960px);
+  min-height: clamp(640px, 92vh, 880px);
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 40px;
+  padding: 96px 40px 64px;
   display: flex;
   flex-wrap: wrap-reverse;
   align-items: start; /* top-align the wordmark and portrait frames (start, not flex-start, because wrap-reverse flips flex-start) */
@@ -239,8 +250,17 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 100%);
+  /* two masks intersected: vertical fade-in from the top (unchanged), and a
+     horizontal fade so a blob never shows a hard edge at the page's left/right
+     bounds as it drifts - the bottom stays unmasked on purpose, see .lower above */
+  -webkit-mask-image:
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 100%),
+    linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(180deg, transparent 0%, #000 12%, #000 100%),
+    linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+          mask-composite: intersect;
 }
 
 .scroll-blob {
@@ -273,7 +293,7 @@ a { color: inherit; }
   margin: 0 auto;
   padding: 0 40px;
 }
-.section--experience { padding-top: 48px; padding-bottom: 56px; }
+.section--experience { padding-top: 28px; padding-bottom: 56px; }
 .section--contact { padding-bottom: 72px; }
 
 .section .spec { color: var(--muted-lo); }
@@ -450,7 +470,7 @@ html { scroll-behavior: smooth; }
   /* hero hugs its content so experience.log isn't pushed below the fold */
   body:not(.error-page) .hero,
   body:not(.error-page) .hero-inner { min-height: 0; }
-  body:not(.error-page) .hero-inner { padding: 112px 40px 120px; }
+  body:not(.error-page) .hero-inner { padding: 112px 40px 72px; }
   .hero-text > .spec:first-child { grid-area: wordmark; }
   .hero-text > .spec:last-child { grid-area: about; }
   .portrait-spec { grid-area: portrait; }
@@ -468,7 +488,7 @@ html { scroll-behavior: smooth; }
 /* ───────────── Small screens ───────────── */
 
 @media (max-width: 720px) {
-  .hero-inner { padding: 96px 20px 64px; }
+  .hero-inner { padding: 96px 20px 48px; }
   .section, .footer { padding-left: 20px; padding-right: 20px; }
   .spec-box { padding: 20px; }
   .section .spec-box { padding: 24px 16px; }
