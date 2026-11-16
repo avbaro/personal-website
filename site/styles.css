@@ -9,7 +9,7 @@
   --bg: #F5F5F4;
   --fg: #0A0A0A;
   --muted: #3F3F46;        /* hero text */
-  --muted-lo: #52525B;     /* experience / contact text */
+  --muted-lo: #46464E;     /* experience / contact text */
   --ink: #0A0A0A;          /* binary pattern */
   --line: rgba(10, 10, 10, 0.14);
   --accent: #5209d0;       /* purple */
@@ -30,8 +30,8 @@
 [data-theme="dark"] {
   --bg: #0B0D12;
   --fg: #F5F5F4;
-  --muted: #A1A1AA;
-  --muted-lo: #A1A1AA;
+  --muted: #B8B8C1;
+  --muted-lo: #B8B8C1;
   --ink: #FFFFFF;
   --line: rgba(255, 255, 255, 0.16);
   --link: var(--accent-2);
@@ -248,6 +248,9 @@ a { color: inherit; }
 .spec-box {
   border: 1px dashed var(--muted);
   padding: 26px 30px;
+  background: color-mix(in srgb, var(--bg) 20%, transparent);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .wordmark { margin: 0; line-height: 0; color: var(--fg); }
@@ -255,8 +258,8 @@ a { color: inherit; }
 
 .about {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.65;
   text-align: justify;
   -webkit-hyphens: none;
           hyphens: none;
@@ -355,7 +358,7 @@ a { color: inherit; }
   gap: 40px;
   padding: 28px 0;
   border-top: 1px dashed var(--line);
-  font-size: 14px;
+  font-size: 15px;
 }
 .role:first-child { border-top: 0; padding-top: 0; }
 .role:last-child { padding-bottom: 0; }
