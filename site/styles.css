@@ -71,7 +71,7 @@ a { color: inherit; }
   color: var(--accent-ink);
   font: 13px var(--mono);
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 0;
   text-decoration: none;
   transition: top 0.2s ease;
 }
@@ -190,8 +190,8 @@ a { color: inherit; }
   z-index: 2;
   min-height: 44px;
   padding: 0 16px;
-  border-radius: 8px;
-  border: 1px solid var(--btn-border);
+  border-radius: 0;
+  border: 1px dashed var(--muted);
   background: var(--btn-bg);
   color: var(--fg);
   font: 13px var(--mono);
@@ -471,8 +471,8 @@ html { scroll-behavior: smooth; }
   align-items: center;
   min-height: 44px;
   padding: 0 16px;
-  border-radius: 8px;
-  border: 1px solid var(--btn-border);
+  border-radius: 0;
+  border: 1px dashed var(--muted);
   background: var(--btn-bg);
   color: var(--fg);
   font: 500 13px var(--mono);
