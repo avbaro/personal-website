@@ -554,7 +554,7 @@ html { scroll-behavior: smooth; }
 /* ───────────── Small screens ───────────── */
 
 @media (max-width: 720px) {
-  .hero-inner { padding: 96px 20px 48px; }
+  .hero-inner { padding: 136px 20px 48px; }
   .section, .footer { padding-left: 20px; padding-right: 20px; }
   .spec-box { padding: 14px; }
   .section .spec-box { padding: 24px 16px; }
