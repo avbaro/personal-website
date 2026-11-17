@@ -37,6 +37,14 @@
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
       try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
       applyTheme();
+      if (!reduceMotion) {
+        toggle.classList.remove('squash');
+        void toggle.offsetWidth; /* restart the animation on repeated clicks */
+        toggle.classList.add('squash');
+      }
+    });
+    toggle.addEventListener('animationend', function () {
+      toggle.classList.remove('squash');
     });
   }
 
