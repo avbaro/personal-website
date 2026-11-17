@@ -187,6 +187,8 @@ a { color: inherit; }
 .theme-toggle {
   display: inline-flex;
   align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
   min-height: 44px;
   padding: 0 16px;
   border: 1px solid var(--btn-border);
@@ -195,7 +197,6 @@ a { color: inherit; }
   color: var(--fg);
   font: 13px var(--mono);
   cursor: pointer;
-  transform: scale(1, 1);
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
 }
@@ -203,18 +204,11 @@ a { color: inherit; }
 .theme-toggle .next { font-weight: 500; }
 .theme-toggle:hover { border-color: var(--link); }
 .theme-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
-.theme-toggle.squash {
-  animation: theme-squash 0.45s cubic-bezier(.36, .07, .19, .97);
-}
-@keyframes theme-squash {
-  0%   { transform: scale(1, 1); }
-  30%  { transform: scale(1.14, 0.82); }
-  55%  { transform: scale(0.9, 1.1); }
-  78%  { transform: scale(1.04, 0.97); }
-  100% { transform: scale(1, 1); }
+.theme-toggle.width-anim {
+  transition: width 0.35s cubic-bezier(.4, 0, .2, 1);
 }
 @media (prefers-reduced-motion: reduce) {
-  .theme-toggle.squash { animation: none; }
+  .theme-toggle.width-anim { transition: none; }
 }
 
 .hero-inner {

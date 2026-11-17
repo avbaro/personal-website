@@ -22,13 +22,40 @@
     return savedTheme() || (systemDark.matches ? 'dark' : 'light');
   }
 
-  function applyTheme() {
+  /* Measure the toggle's natural width with a given "next" label, without
+     disturbing the live element - used to animate a smooth grow/shrink
+     between the "dark"/"light" label widths instead of just snapping. */
+  function measureToggleWidth(nextLabel) {
+    var clone = toggle.cloneNode(true);
+    clone.querySelector('.next').textContent = nextLabel;
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    clone.style.left = '-9999px';
+    clone.style.width = 'auto';
+    document.body.appendChild(clone);
+    var width = clone.getBoundingClientRect().width;
+    document.body.removeChild(clone);
+    return width;
+  }
+
+  function applyTheme(animate) {
     var theme = currentTheme();
     root.setAttribute('data-theme', theme);
     if (toggle) {
       var next = theme === 'dark' ? 'light' : 'dark';
-      toggle.querySelector('.next').textContent = next;
       toggle.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+
+      if (animate && !reduceMotion) {
+        var startWidth = toggle.getBoundingClientRect().width;
+        var endWidth = measureToggleWidth(next);
+        toggle.style.width = startWidth + 'px';
+        toggle.querySelector('.next').textContent = next;
+        void toggle.offsetWidth; /* force reflow before animating to the new width */
+        toggle.classList.add('width-anim');
+        toggle.style.width = endWidth + 'px';
+      } else {
+        toggle.querySelector('.next').textContent = next;
+      }
     }
   }
 
@@ -36,15 +63,12 @@
     toggle.addEventListener('click', function () {
       var next = currentTheme() === 'dark' ? 'light' : 'dark';
       try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
-      applyTheme();
-      if (!reduceMotion) {
-        toggle.classList.remove('squash');
-        void toggle.offsetWidth; /* restart the animation on repeated clicks */
-        toggle.classList.add('squash');
-      }
+      applyTheme(true);
     });
-    toggle.addEventListener('animationend', function () {
-      toggle.classList.remove('squash');
+    toggle.addEventListener('transitionend', function (e) {
+      if (e.propertyName !== 'width') return;
+      toggle.classList.remove('width-anim');
+      toggle.style.width = '';
     });
   }
 
